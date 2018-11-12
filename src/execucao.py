@@ -2,6 +2,18 @@ from copy import deepcopy
 class Execucao:
   def __init__ (self, estado, entrada, epsilon):
 
+    """ Description
+        Método construtor do objeto de execução que é responsável de executar determinada transição
+
+    :type estado: Estado
+    :param estado: Estado que a execução deve se iniciar
+
+    :type entrada: list
+    :param entrada: Estrada restante que deve ser processada pela execução
+
+    :type epsilon: str
+    :param epsilon: Simbolo que respresenta o epsilon para a execução
+    """
     self.estadoAtual = estado
     self.entrada = entrada
     self.epsilon = epsilon
@@ -20,11 +32,18 @@ class Execucao:
     return self.estadoAtual
 
   def isFinished(self): ## verificacao de aceitacao da entrada pela execucao
+    """ Description
+        Método que retorna a situação da execução no momento, se está terminado ou não
+    :rtype: int
+    """
     if  len(self.entrada) == 0:
       if self.estadoAtual.isFinal():
         return 1
 
   def descricao(self): ## mostra descricao instantanea da execucao
+    """ Description
+        Mostra a descrição da execução no momento
+    """
     print("<", end=' ')
     print(self.estadoAtual.getNome(), end=', ')
     for i in self.entrada:
@@ -33,6 +52,14 @@ class Execucao:
 
   def execute(self, transicao): ## metodo responsavel por executar uma transicao
 
+    """ Description
+        Função que faz a execução de uma transição passada por parâmentro
+
+    :type transicao: Transição
+    :param transicao: transição que será executada nesta instancia
+
+    :rtype: int
+    """
     simbolo = transicao.getSimbolo() ## simbolo entrada (transicao)
     if simbolo != self.epsilon:
       self.shift() ## consome entrada
@@ -40,5 +67,3 @@ class Execucao:
     self.estadoAtual = transicao.getnovoEstado() ## novo estado
 
     return 1
-
-  pass

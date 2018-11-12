@@ -1,5 +1,18 @@
 class Transicao:
   def __init__(self, estado, novoEstado, simbolo):
+    
+    """ Description
+        Método construtor da classe transicao, cria um objeto com os atributo que uma trasicao tem
+  
+    :type estado: Estado
+    :param estado: estado de origem da transicao
+  
+    :type novoEstado: Estado
+    :param novoEstado: estado destino da transicao 
+  
+    :type simbolo: str
+    :param simbolo: simbolo que será responsavel por executar esta transicao
+    """
     self.estado = estado
     self.simbolo = simbolo
     self.novoEstado = novoEstado

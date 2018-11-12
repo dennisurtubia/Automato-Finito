@@ -4,6 +4,18 @@ from estado import Estado
 class Maquina:
 	def __init__(self, dados, entrada):
 		
+		""" Description
+			Método construtor de Maquina
+
+		:type dados: dict
+		:param dados: dicionário com as configurações do autômato finito
+	
+		:type entrada: str
+		:param entrada: entrada que será testada no automato
+
+		"""
+
+		## adiciona atributos a Maquina
 		self.entrada = [entry for entry in entrada]
 		self.epsilon = dados['simbolo_epsilon']
 		self.alfabetoEntrada = dados['alfabeto_entrada']
@@ -24,26 +36,34 @@ class Maquina:
 			self.estados.append(estado)
 
 		self.transicoes = []
-		for transition in self.transicoesTmp:
+		for transition in self.transicoesTmp: ## cria os objetos de transicoes
 			for i in self.estados:
-				if i.getNome() == transition['estadoAtual']:
+				if i.getNome() == transition['estadoAtual']: ## define o estado atual da transição
 					curState = i
-				if i.getNome() == transition['estadoDestino']:
+				if i.getNome() == transition['estadoDestino']: ## define o estado de destino da transição
 					newState = i
 
-			simbolEnt = transition['simboloCorrente']
+			simbolEnt = transition['simboloCorrente'] ## define o simbolo da transição
 
 			self.transicoes.append(Transicao(curState, newState, simbolEnt))
 
-		self.execucoes = [Execucao(self.estadoAtual, self.entrada, self.epsilon)]
+		self.execucoes = [Execucao(self.estadoAtual, self.entrada, self.epsilon)] ## cria a primeira Execução com o estado inicial
 		
 	def getTransicoes(self, execucao):
-		## coletas as transicoes a partir de uma execucao
-		## a coleta esta "dividida" em tres partes: 
-					#	coleta das transicoes disponiveis para o estado atual da execucao
-					#	coleta das transicoes com o mesmo simbolo de entrada
-					#	e no final, coleta das transicoes com os mesmos dados no top da pilha
 
+		""" Description
+				Método responsável por fazer a coleta das transições correspondentes ao a execução
+				a coleta esta "dividida" em duas partes: 
+					coleta das transicoes disponiveis para o estado atual da execucao
+					coleta das transicoes com o mesmo simbolo de entrada
+
+		:type execucao: Execucao
+		:param execucao: Objeto de execucao que será coletados as transições
+	
+		:rtype: list
+		:retorno transiçoes disponiveis para serem executados pela execucao
+		"""
+		
 		trasPostEstados = []
 		for i in self.transicoes: ## coleta das transicoes com base no estado que a execucao esta
 			if i.getEstado().getNome() == execucao.getEstado().getNome():
@@ -61,6 +81,11 @@ class Maquina:
 		return trasPostSimbolos
 
 	def run (self):
+		"""	 Description
+				Método responsável por fazer e gerenciar todas as execuçoes
+		:rtype: int
+		: retorno: -> 0 caso a palavra seja aceita, 1 caso a palavra seja recusada
+		"""
 		while True:
 			auxExecs = []
 			auxTrans = []
@@ -108,5 +133,4 @@ class Maquina:
 
 			self.execucoes = auxExecs ## vetor principal de execucoes tem as execucoes que ainda estao "ativas"
 
-
-		pass
+		return 0

@@ -1,5 +1,12 @@
 class Estado:
   def __init__(self, nome):
+    
+    """ Description
+        Método construtor de estado, define os atributos que um estado deve ter
+  
+    :type nome: str
+    :param nome: Nome ou descrição do estado
+    """
     self.nome = nome
     self.inicial = False
     self.final = False
