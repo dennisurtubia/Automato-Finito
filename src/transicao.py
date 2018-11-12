@@ -6,16 +6,19 @@ class Transicao:
 
   def getEstado(self):
     return self.estado
-  def setEstado(self):
+
+  def setEstado(self, estado):
     self.estado = estado
 
   def getSimbolo(self):
     return self.simbolo
+
   def setSimbolo(self, simbolo):
     self.simbolo = simbolo
 
   def getnovoEstado(self):
     return self.novoEstado
+    
   def setnovoEstado(self, novoEstado):
     self.novoEstado = novoEstado
 
