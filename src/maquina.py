@@ -100,7 +100,7 @@ class Maquina:
 			for i in self.execucoes:
 
 				#### IMPORTANT ####
-				## transicoes nao sao compiadas, sao apenas passadas como referencia
+				## transicoes nao sao copiadas, sao apenas passadas como referencia
 				## existe apenas um vetor (que nao eh alterado) com as "verdadeiras" transicoes _> self.transicoes
 
 				trans = self.getTransicoes(i) ## coleta as transicoes a partir de uma execucao
